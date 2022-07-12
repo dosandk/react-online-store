@@ -1,0 +1,32 @@
+.list-view-controls {
+  font-size: 18px;
+  padding: 10px 0;
+  text-align: right;
+}
+
+.list-view-controls .bi {
+  cursor: pointer;
+  margin-left: 5px;
+}
+
+.list-view-controls .bi.active {
+  color: var(--primary-bg);
+}
+
+.products-page {
+  padding-top: 25px;
+}
+
+.filters-panel {
+  grid-template-columns: 3fr 1fr;
+  grid-gap: 20px;
+  display: grid;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 20px;
+  margin: 20px 0;
+  box-shadow: 0 2px 8px rgb(0 0 0 / 13%);
+  border-radius: 8px;
+  overflow: hidden;
+  background-color: #fff;
+}

@@ -8,7 +8,7 @@ export const transformReducers = (reducerObj) => {
 const createReducer = (handlers) => {
   return (state = null, action) => {
     if (handlers[action.type]) {
-      return handlers[action.type](state, action);
+      return handlers[action.type](state, action.payload);
     }
     return state;
   };

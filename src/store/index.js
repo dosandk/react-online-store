@@ -5,7 +5,8 @@ import thunkMiddleware from "redux-thunk";
 import reducers from "../reducers";
 
 const preloadedState = {
-  products: [],
+  cart: [],
+  wishList: [],
   loader: false,
   counter: 0
 }

@@ -29,6 +29,8 @@ class CardClassComponent extends Component {
 }
 
 const mapStateToProps = ({ counter }) => {
+  console.error('mapStateToProps', mapStateToProps);
+
   return { counter };
 };
 

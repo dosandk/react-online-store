@@ -1,11 +1,13 @@
-import { products } from './products.js'
+import { cart } from './cart.js'
+import { wishList } from './wish-list.js'
 import { counter } from './counter.js';
 import { loader } from './loader.js';
 
 import { transformReducers } from './transform-reducers.js'
 
 export default transformReducers({
-  products,
+  cart,
+  wishList,
   counter,
   loader
 })
