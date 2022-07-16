@@ -9,7 +9,7 @@ const preloadedState = {
   wishList: [],
   loader: false,
   counter: 0
-}
+};
 
 const composedEnhancers = composeWithDevTools(applyMiddleware(logger, thunkMiddleware));
 const rootReducer = combineReducers(reducers);

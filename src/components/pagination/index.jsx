@@ -14,6 +14,10 @@ const Pagination = ({
     setHidden(!Boolean(totalPages));
   }, []);
 
+  useEffect(() => {
+    setActivePageIndex(activePage - 1);
+  }, [activePage])
+
   const goToNextPage = event => {
     goToPage(activePageIndex + 1)(event);
   };

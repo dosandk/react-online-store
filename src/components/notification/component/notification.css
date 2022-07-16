@@ -12,6 +12,10 @@
   overflow: hidden;
 }
 
+.notification-body .bi {
+  padding-right: 10px;
+}
+
 /* Success */
 .notification.success .notification-body .bi {
   color: #2ED47A;

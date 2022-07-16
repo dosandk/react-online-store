@@ -1,24 +1,26 @@
-import React, {useCallback, useEffect, useRef, useState} from 'react';
-import { useSelector, useDispatch } from 'react-redux';
-// import { increment, decrement } from '../../reducers/counter.js'
-import { addToCart, removeFromCart } from '../../reducers/cart.js'
-import { addToWishList, removeFromWishList } from '../../reducers/wish-list.js'
+import {useSelector, useDispatch} from 'react-redux';
+import {addToCart, removeFromCart} from '../../reducers/cart.js'
+import {addToWishList, removeFromWishList} from '../../reducers/wish-list.js'
+import {useNotification} from "../notification/provider";
 
 import './card.css';
 
-const CardFooter = ({ product }) => {
+const CardFooter = ({product}) => {
   const wishList = useSelector(state => state.wishList);
   const cart = useSelector(state => state.cart);
+  const {notify} = useNotification();
+  const dispatch = useDispatch();
 
   const cartProducts = cart.map(product => product.id);
   const wishlistProducts = wishList.map(product => product.id);
 
-  const dispatch = useDispatch();
-  const cartBtnRef = useRef();
-  const wishListBtnRef = useRef();
-
   const updateWishList = (event) => {
     const isActive = event.target.classList.toggle('active');
+
+    const action = isActive ? 'added' : 'removed';
+    const message = `Product "${product.title}" was successfully ${action} to wishlist`;
+
+    notify(message);
 
     if (isActive === false) {
       dispatch(removeFromWishList(product));
@@ -32,6 +34,11 @@ const CardFooter = ({ product }) => {
 
   const updateCart = (event) => {
     const isActive = event.target.classList.toggle('active');
+
+    const action = isActive ? 'added' : 'removed';
+    const message = `Product "${product.title}" was successfully ${action} to cart`;
+
+    notify(message);
 
     if (isActive === false) {
       dispatch(removeFromCart(product));
@@ -50,7 +57,6 @@ const CardFooter = ({ product }) => {
     <footer className="os-product-footer">
       <button
         onClick={updateWishList}
-        ref={wishListBtnRef}
         className={`os-btn-default add-to-wishlist-btn ${isActive(wishlistProducts)}`}>
         <i className="bi bi-heart"></i>
         <i className="bi bi-heart-fill"></i>
@@ -59,7 +65,6 @@ const CardFooter = ({ product }) => {
       <div className="btns-separator"></div>
       <button
         onClick={updateCart}
-        ref={cartBtnRef}
         className={`os-btn-default add-to-cart-btn ${isActive(cartProducts)}`}>
         <i className="bi bi-cart"></i>
         <i className="bi bi-cart-check-fill"></i>
@@ -71,6 +76,7 @@ const CardFooter = ({ product }) => {
 
 const Card = ({product = {}, showFooter = true}) => {
   const {rating = '', price = '', title = '', description = '', images = []} = product;
+
   const shortDescription = description.slice(0, 50) + '...';
 
   return <div className="os-product-card">
@@ -89,7 +95,7 @@ const Card = ({product = {}, showFooter = true}) => {
       <h5 className="os-product-title">{title}</h5>
       <p className="os-product-description">{shortDescription}</p>
     </div>
-    { showFooter ? <CardFooter product={product} /> : null }
+    {showFooter ? <CardFooter product={product}/> : null}
   </div>
 }
 
