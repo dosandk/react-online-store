@@ -29,12 +29,12 @@ const WishListPage = () => {
     setPage(pageIndex + 1);
   }, []);
 
-  const getCardsListData = useCallback(() => {
+  const getCardsListData =() => {
     const start = (page - 1) * pageSize;
     const end = start + pageSize;
 
     return wishList.slice(start, end);
-  }, []);
+  };
 
   const removeProduct = useCallback((product) => {
     dispatch(removeFromWishList(product));
