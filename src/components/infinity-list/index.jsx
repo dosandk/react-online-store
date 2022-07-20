@@ -27,13 +27,13 @@ const InfinityList = ({
   }, []);
 
   useEffect(() => {
-    const option = {
+    const options = {
       root: null,
       rootMargin: "20px",
       threshold: 0
     };
 
-    const observer = new IntersectionObserver(handleObserver, option);
+    const observer = new IntersectionObserver(handleObserver, options);
 
     if (loader.current) {
       observer.observe(loader.current);

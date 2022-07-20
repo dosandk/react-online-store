@@ -7,12 +7,7 @@ const Pagination = ({
   totalPages = 0,
   onPageChanged = () => {},
 }) => {
-  const [isHidden, setHidden] = useState(true);
   const [activePageIndex, setActivePageIndex] = useState(activePage - 1);
-
-  useEffect(() => {
-    setHidden(!Boolean(totalPages));
-  }, []);
 
   useEffect(() => {
     setActivePageIndex(activePage - 1);
@@ -38,7 +33,7 @@ const Pagination = ({
     }
   };
 
-  return <nav className="os-pagination" hidden={isHidden}>
+  return totalPages && <nav className="os-pagination">
     <a href="#" className="page-link previous" onClick={goToPrevPage}>
       <i className="bi bi-chevron-left"></i>
     </a>

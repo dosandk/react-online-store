@@ -6,9 +6,7 @@ import reducers from "../reducers";
 
 const preloadedState = {
   cart: [],
-  wishList: [],
-  loader: false,
-  counter: 0
+  wishList: []
 };
 
 const composedEnhancers = composeWithDevTools(applyMiddleware(logger, thunkMiddleware));

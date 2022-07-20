@@ -17,7 +17,6 @@ const CartItem = ({product = {}, updateTotal, removeProduct }) => {
       return removeProduct(id);
     }
 
-    // TODO: rethink
     if (count >= 2) {
       updateTotal((count - 1) * price);
     } else {

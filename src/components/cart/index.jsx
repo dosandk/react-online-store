@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react';
+import React, {useCallback, useEffect, useState} from 'react';
 import CartItem from "./cart-item";
 import { removeFromCart } from '../../reducers/cart.js';
 import {useDispatch} from "react-redux";
@@ -27,18 +27,16 @@ const Cart = ({data = []}) => {
   }, [products]);
 
   const updateTotal = (newPrice) => {
-    // const price = countTotal(products);
-
     setTotalPrice(total => {
       return total + newPrice;
     });
   };
 
-  const removeProduct = (id = '') => {
+  const removeProduct = useCallback((id = '') => {
     const product = products.find(item => item.id === id);
 
     dispatch(removeFromCart(product));
-  };
+  }, [products]);
 
   const items = products.map(product => {
     return <CartItem
