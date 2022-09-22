@@ -1,15 +1,10 @@
-import React from 'react';
+import React, { Suspense, lazy } from 'react';
 import ReactDOM from 'react-dom/client';
 import {Provider, useSelector} from 'react-redux';
 import {BrowserRouter, Routes, Route, Link} from "react-router-dom";
 
 import store from './store/index.js';
 import {NotificationsProvider} from "./components/notification/provider";
-
-import OnlineStorePage from "./pages/main/index.jsx";
-import WishListPage from "./pages/wishlist/index.jsx";
-import CartPage from "./pages/cart/index.jsx";
-import Page404 from "./pages/error404";
 
 import './styles/style.css';
 
@@ -19,7 +14,7 @@ const Navigation = () => {
   const cartProducts = useSelector(state => state.cart);
   const wishListProducts = useSelector(state => state.wishList);
 
-  return <ul className="sidebar__nav" data-element="navigation">
+  return <ul className="sidebar__nav">
     <li>
       <Link to="/" className="link-unstyled">
         <i className="bi bi-shop"></i><span>Products</span>
@@ -38,6 +33,11 @@ const Navigation = () => {
   </ul>
 };
 
+const OnlineStorePage = lazy(() => import('./pages/main/index.jsx'));
+const WishListPage = lazy(() => import('./pages/wishlist/index.jsx'));
+const CartPage = lazy(() => import('./pages/cart/index.jsx'));
+const Page404 = lazy(() => import('./pages/error404/index.jsx'));
+
 root.render(
   // NOTE: Pattern. Decorator
   <Provider store={store}>
@@ -53,12 +53,15 @@ root.render(
             </aside>
 
             <section id="page-content">
-              <Routes>
-                <Route path="/" element={<OnlineStorePage/>}/>
-                <Route path="wishlist" element={<WishListPage/>}/>
-                <Route path="cart" element={<CartPage/>}/>
-                <Route path="*" element={<Page404/>}/>
-              </Routes>
+              <Suspense fallback={<div>Loading...</div>}>
+                <Routes>
+                  <Route path="/" element={<OnlineStorePage/>}/>
+                  <Route path="wishlist" element={<WishListPage/>}/>
+                  <Route path="cart" element={<CartPage/>}/>
+                  <Route path="404" element={<Page404/>}/>
+                  <Route path="*" element={<Page404/>}/>
+                </Routes>
+              </Suspense>
             </section>
           </main>
         </div>

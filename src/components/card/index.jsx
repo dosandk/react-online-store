@@ -31,7 +31,6 @@ const CardFooter = ({product}) => {
     }
   };
 
-
   const updateCart = (event) => {
     const isActive = event.target.classList.toggle('active');
 

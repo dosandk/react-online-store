@@ -1,27 +1,34 @@
-import React, {useEffect, useState} from "react";
+import React, {useEffect, useRef, useState} from "react";
 
 const CartItem = ({product = {}, updateTotal, removeProduct }) => {
   const [count, setCount] = useState(1);
   const {id = '', images = [], title, price = 0 } = product;
+  const prevCount = useRef(null);
 
   const addCount = () => {
-    setCount(count => count + 1);
+    setCount(count => {
+      prevCount.current = count;
+      return count + 1;
+    });
   };
 
   const removeCount = () => {
-    setCount(count => count - 1)
+    setCount(count => {
+      prevCount.current = count;
+      return count - 1;
+    })
   };
 
   useEffect(() => {
+    if (prevCount.current === null) return;
+
     if (count === 0) {
       return removeProduct(id);
     }
 
-    if (count >= 2) {
-      updateTotal((count - 1) * price);
-    } else {
-      updateTotal(0);
-    }
+    const newPrice = (count - prevCount.current) * price;
+
+    updateTotal(newPrice);
   }, [count]);
 
   return (
