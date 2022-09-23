@@ -14,6 +14,7 @@ const OnlineStorePage = () => {
   const pageSize = 10;
   const [view, setView] = useState('grid');
   const [loading, setLoading] = useState(true);
+  // eslint-disable-next-line
   const [error, setError] = useState(false);
   const [list, setList] = useState([]);
   const [page, setPage] = useState(0);
@@ -55,7 +56,7 @@ const OnlineStorePage = () => {
     }
   }, [list]);
 
-  const loadMore = (pageIndex) => {
+  const loadMore = pageIndex => {
     setPagination(pageIndex);
 
     if (loading === false) {

@@ -38,7 +38,7 @@ const WishListPage = () => {
 
   const removeProduct = useCallback((product) => {
     dispatch(removeFromWishList(product));
-  }, []);
+  }, [dispatch]);
 
   useEffect(() => {
     setPage(1);

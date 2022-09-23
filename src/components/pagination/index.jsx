@@ -34,6 +34,7 @@ const Pagination = ({
   };
 
   return totalPages && <nav className="os-pagination">
+    {/*eslint-disable-next-line*/}
     <a href="#" className="page-link previous" onClick={goToPrevPage}>
       <i className="bi bi-chevron-left"></i>
     </a>
@@ -44,6 +45,7 @@ const Pagination = ({
           const isActive = pageIndex === activePageIndex ? 'active' : '';
 
           return <li key={pageIndex} onClick={goToPage(pageIndex)}>
+            {/*eslint-disable-next-line*/}
             <a href="#" className={`page-link ${isActive}`}>
               {pageIndex + 1}
             </a>
@@ -52,6 +54,7 @@ const Pagination = ({
       }
     </ul>
 
+    {/*eslint-disable-next-line*/}
     <a href="#" className="page-link next" onClick={goToNextPage}>
       <i className="bi bi-chevron-right"></i>
     </a>

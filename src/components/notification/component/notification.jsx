@@ -11,7 +11,7 @@ const NotificationMessage = ({message, duration, onDelete}) => {
     return () => {
       clearTimeout(timerId);
     };
-  }, []);
+  }, [duration, onDelete]);
 
   return (
     <div className="notification success" style={{"--value": `${duration}ms`}}>

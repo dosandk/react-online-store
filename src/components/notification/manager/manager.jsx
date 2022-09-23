@@ -26,7 +26,7 @@ const NotificationManager = ({
         id: getId()
       }];
     });
-  }, [messageObj]);
+  }, [messageObj, stackLimit]);
 
 
   const deleteNotification = id => {

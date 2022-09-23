@@ -29,6 +29,7 @@ const CartItem = ({product = {}, updateTotal, removeProduct }) => {
     const newPrice = (count - prevCount.current) * price;
 
     updateTotal(newPrice);
+    // eslint-disable-next-line
   }, [count]);
 
   return (

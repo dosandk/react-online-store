@@ -4,8 +4,10 @@ export const tableConfig = [
     title: 'Image',
     sortable: false,
     Cell: ({ data }) => {
+      const [img] = data;
+
       return <td className="col">
-        <img className="sortable-table-image" alt="product image" src={data[0].url} />
+        <img className="sortable-table-image" alt={img.source} src={img.url} />
       </td>
     }
   },
