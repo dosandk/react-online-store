@@ -1,7 +1,7 @@
 import {useSelector, useDispatch} from 'react-redux';
 import {addToCart, removeFromCart} from '../../reducers/cart.js'
 import {addToWishList, removeFromWishList} from '../../reducers/wish-list.js'
-import {useNotification} from "../notification/provider";
+import {useNotification} from '../notification/provider';
 
 import './card.css';
 

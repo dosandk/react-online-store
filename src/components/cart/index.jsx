@@ -1,7 +1,7 @@
 import React, {useCallback, useEffect, useState} from 'react';
-import CartItem from "./cart-item";
+import {useDispatch} from 'react-redux';
+import CartItem from './cart-item';
 import { removeFromCart } from '../../reducers/cart.js';
-import {useDispatch} from "react-redux";
 
 import './cart-style.css';
 
